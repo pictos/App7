@@ -22,10 +22,5 @@ namespace App7
 		{
 			(BindingContext as BaseViewModel)!.InitAsync();
 		}
-
-		private void Button_Clicked(object sender, EventArgs e)
-		{
-			(BindingContext as MainViewModel)!.RemoveCommand.Execute((sender as Button)?.BindingContext);
-		}
 	}
 }

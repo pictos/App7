@@ -12,34 +12,17 @@ namespace App7
 {
 	sealed class MainViewModel : BaseViewModel
 	{
-		public ObservableCollection<Item> Items { get; }
-
-		public Command<Item> AddCommand { get; }
-		public Command<Item> RemoveCommand { get; }
+		public ObservableCollection<ItemViewModel> Items { get; }
 
 		public MainViewModel()
 		{
-			Items = new ObservableCollection<Item>();
-			AddCommand = new Command<Item>(AddCommandExecute);
-			RemoveCommand = new Command<Item>(RemoveCommandExecute);
-		}
-
-		private void AddCommandExecute(Item obj)
-		{
-			++obj.Count;
-		}
-
-		private void RemoveCommandExecute(Item obj)
-		{
-			if (obj.Count == 0)
-				return;
-			--obj.Count;
+			Items = new ObservableCollection<ItemViewModel>();
 		}
 
 		public async override Task InitAsync()
 		{
 			var items = await ClientAPI.GetItemsAsync();
-			items.ForEach(Items.Add);
+			items.ForEach(item => Items.Add(new ItemViewModel(item)));
 		}
 	}
 

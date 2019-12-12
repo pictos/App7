@@ -28,12 +28,9 @@
 							Grid.RowSpan="2"
 							Grid.Column="1"
 							Orientation="Horizontal">
-							<Button Clicked="Button_Clicked" Text="-" />
+							<Button Command="{Binding RemoveCommand}" Text="-" />
 							<Label Text="{Binding Count}" VerticalTextAlignment="Center" />
-							<Button
-								Command="{Binding Source={x:Reference this}, Path=BindingContext.AddCommand}"
-								CommandParameter="{Binding .}"
-								Text="+" />
+							<Button Command="{Binding AddCommand}" Text="+" />
 						</StackLayout>
 					</Grid>
 				</DataTemplate>
